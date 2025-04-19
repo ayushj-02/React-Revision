@@ -1,2 +1,2 @@
-# React-Revision-
+# React-Revision
 React JS Revision Notes
