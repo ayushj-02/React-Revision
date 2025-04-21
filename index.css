@@ -65,3 +65,10 @@
     margin: 1rem 0;
   
 }
+
+.filter-btn{
+  margin:1rem 0;
+  cursor: pointer;
+  padding: 1rem 1.75rem;
+  font-size: 1.2rem;
+}
