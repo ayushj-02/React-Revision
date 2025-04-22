@@ -1,0 +1,13 @@
+import React from "react";
+
+const Shimmer = () => {
+  return (
+    <div className="res-container">
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => {
+        return <div className="res-card"></div>;
+      })}
+    </div>
+  );
+};
+
+export default Shimmer;
