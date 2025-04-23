@@ -92,3 +92,29 @@ a{
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   margin-top: 1rem;
 }
+
+.user-card{
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display:flex;
+  gap:1rem;
+  height:auto;
+  align-items:center
+
+}
+.user-card img{
+  height:100px
+}
+
+.counter{
+  display:flex;
+  justify-Content:start;
+  height:auto;
+  align-Items:center;
+  gap:1rem;
+}
+
+.counter button{
+  padding: 0 2rem; 
+  height: auto 
+}
