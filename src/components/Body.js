@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RestaurantCards from "./RestaurantCards";
 import { mockResData } from "../mocks/mockResData";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -80,10 +81,12 @@ const Body = () => {
         <div className="res-container">
           {filteredRestaurants.length > 0 ? (
             filteredRestaurants.map((resInfo) => (
-              <RestaurantCards
+              <Link
+                to={"/restaurants/" + resInfo.card.card.info.id}
                 key={resInfo.card.card.info.id}
-                resData={resInfo}
-              />
+              >
+                <RestaurantCards resData={resInfo} />
+              </Link>
             ))
           ) : (
             <p>No Result Found... Please try again.</p>

@@ -37,12 +37,22 @@
   gap:1rem
 }
 
-.res-card{
+a{
+
+  text-decoration: none;
+  color:#000;
+  cursor: pointer;
+
+}
+
+.res-container a{
   border: 1px solid #ccc;
   min-height: 16rem;
   width: 12%;
   background: #f0f0f0;
   padding: 0.5rem;
+  text-decoration: none;
+  color:#000
 
 }
 .res-card:hover {
@@ -71,4 +81,14 @@
   cursor: pointer;
   padding: 0 1.75rem;
   font-size: 1.2rem;
+}
+
+.footer{
+  display: flex;
+  justify-content: center;
+  height: 4rem;
+  align-items: center;
+  background: #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 1rem;
 }
