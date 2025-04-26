@@ -57,24 +57,30 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="search">
+      <div className="search ml-2  py-3">
         <input
           type="text"
           placeholder="Search Restaurants..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          className="border border-solid border-black px-2.5 py-0.75 rounded-lg"
         />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-
-      <div style={{ margin: "1rem 0" }}>
-        <button className="filter-btn" onClick={handleFilter}>
+        <button
+          onClick={handleSearch}
+          className="ml-2 px-2.5 py-0.75 bg-[#ccc] rounded-lg"
+        >
+          Search
+        </button>
+        <button
+          className="ml-2 px-2.5 py-0.75 bg-[#ccc] rounded-lg "
+          onClick={handleFilter}
+        >
           Top Rated Restaurants near You
         </button>
         <button
-          className="filter-btn"
           onClick={handleReset}
           style={{ marginLeft: "1rem" }}
+          className="ml-2 px-2.5 py-0.75 bg-[#ccc] rounded-lg"
         >
           Reset
         </button>
@@ -83,7 +89,7 @@ const Body = () => {
       {allRestaurants.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="res-container">
+        <div className="flex flex-wrap gap-2 justify-evenly">
           {filteredRestaurants.length > 0 ? (
             filteredRestaurants.map((resInfo) => (
               <Link
