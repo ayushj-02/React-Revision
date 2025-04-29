@@ -1,30 +1,59 @@
+import { useState } from "react";
 import Shimmer from "./Shimmer";
+import ItemList from "./ItemList";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const { resInfo, foodMenu } = useRestaurantMenu();
+  const { resInfo } = useRestaurantMenu();
+  const [showIndex, setShowIndex] = useState(null); // Start with null (nothing open)
 
-  return resInfo ? (
-    <div className="res">
-      <h1 className="name">{resInfo[0]?.card?.card?.text}</h1>
-      <p>
+  const categories =
+    resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  if (!resInfo) return <Shimmer />;
+
+  return (
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">
+        {resInfo[0]?.card?.card?.text}
+      </h1>
+      <p className="font-bold text-lg mb-5">
         {resInfo[2]?.card?.card?.info?.cuisines?.join(", ")} -{" "}
         {resInfo[2]?.card?.card?.info?.costForTwoMessage}
       </p>
-      <h2>Menu</h2>
-      <ul style={{ padding: 0 }}>
-        {foodMenu?.map((item) => {
-          const { name, price } = item?.card?.info;
-          return (
-            <li style={{ marginBottom: "1rem", listStyle: "none" }}>
-              {name} - Rs.{price / 100}
-            </li>
-          );
-        })}
-      </ul>
+
+      {categories?.map((each, index) => {
+        const { itemCards } = each?.card?.card;
+        const isOpen = showIndex === index; // 👈 simple check
+
+        return (
+          <div
+            key={index}
+            className="accordion mx-[25rem] bg-gray-200 shadow-lg p-4 mb-4 cursor-pointer"
+            onClick={() => setShowIndex(isOpen ? null : index)} // 👈 toggle
+          >
+            <div className="flex justify-between items-center">
+              <span className="font-bold text-lg">
+                {each?.card?.card?.title} ({itemCards.length})
+              </span>
+              <span
+                className={`transform transition-transform ${
+                  isOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                ^
+              </span>
+            </div>
+
+            {isOpen && <ItemList itemCards={itemCards} />}
+          </div>
+        );
+      })}
     </div>
-  ) : (
-    <Shimmer />
   );
 };
 

@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../utils/UserContext";
 import User from "./User";
 import UserClass from "./UserClass";
 
 //Function Component
 
 function About() {
+  const { loggedInUser } = useContext(UserContext);
   return (
     <>
       <h1>About</h1>
       <h2>Page dedicated to about us</h2>
-      <User name={"Ayush Functional"} />
+      <h3 className="font-bold my-4">User : {loggedInUser}</h3>
       <UserClass name={"Ayush Class"} />
+      <User name={"Ayush Functional"} />
     </>
   );
 }

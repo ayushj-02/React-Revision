@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import RestaurantCards from "./RestaurantCards";
+import React, { useState, useEffect, useContext } from "react";
+import RestaurantCards, { withPromotedLabel } from "./RestaurantCards";
 import { mockResData } from "../mocks/mockResData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useStatusOnline from "../utils/useStatusOnline";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -55,6 +56,8 @@ const Body = () => {
   if (onlineStatus === false)
     return <h1>Internet off, Please start yout internet connection</h1>;
 
+  const RestaurantsCardPromoted = withPromotedLabel(RestaurantCards);
+  const { loggedInUser, setUserName } = useContext(UserContext);
   return (
     <div className="body">
       <div className="search ml-2  py-3">
@@ -84,6 +87,14 @@ const Body = () => {
         >
           Reset
         </button>
+        <label htmlFor="" className="ml-6">
+          User LoggedIn :{" "}
+        </label>
+        <input
+          className="border border-black"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e?.target?.value)}
+        />
       </div>
 
       {allRestaurants.length === 0 ? (
@@ -96,7 +107,11 @@ const Body = () => {
                 to={"/restaurants/" + resInfo.card.card.info.id}
                 key={resInfo.card.card.info.id}
               >
-                <RestaurantCards resData={resInfo} />
+                {resInfo.card.card.info.promoted ? (
+                  <RestaurantsCardPromoted resData={resInfo} />
+                ) : (
+                  <RestaurantCards resData={resInfo} />
+                )}
               </Link>
             ))
           ) : (
