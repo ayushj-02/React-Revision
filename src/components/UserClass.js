@@ -19,21 +19,15 @@ class UserClass extends React.Component {
     const { name, location, avatar_url } = this.state.setInfo;
     const { count } = this.state;
     return (
-      <div
-        style={{
-          border: "1px solid red",
-          padding: "1rem 2rem",
-          marginBottom: "1rem",
-        }}
-      >
-        <p style={{ marginBottom: 0 }}>Data coming from Class Component</p>
+      <div className="border border-gray-50 px-3 py-2 mb-4 mx-5 bg-gray-100">
+        {/* <p style={{ marginBottom: 0 }}>Data coming from Class Component</p> */}
         {/* <div className="counter">
           <h1>{count}</h1>
           <button onClick={() => this.setState({ count: count + 1 })}>+</button>
           <button onClick={() => this.setState({ count: count - 1 })}>-</button>
         </div> */}
-        <div className="user-card">
-          <img src={avatar_url} alt="" />
+        <div className="user-card flex justify-start">
+          <img src={avatar_url} alt="" className="w-20  mr-[1rem]" />
           <div>
             <h1 className="name">Name : {name}</h1>
             <h2>Location : Bengaluru</h2>

@@ -34,15 +34,17 @@ const RestaurantMenu = () => {
           <div
             key={index}
             className="accordion mx-[25rem] bg-gray-200 shadow-lg p-4 mb-4 cursor-pointer"
-            onClick={() => setShowIndex(isOpen ? null : index)} // 👈 toggle
           >
-            <div className="flex justify-between items-center">
+            <div
+              className="flex justify-between items-center"
+              onClick={() => setShowIndex(isOpen ? null : index)}
+            >
               <span className="font-bold text-lg">
                 {each?.card?.card?.title} ({itemCards.length})
               </span>
               <span
                 className={`transform transition-transform ${
-                  isOpen ? "rotate-180" : "rotate-0"
+                  !isOpen ? "rotate-180" : "rotate-0"
                 }`}
               >
                 ^

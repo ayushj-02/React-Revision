@@ -26,7 +26,7 @@ const RestaurantCards = ({ resData }) => {
 export const withPromotedLabel = (RestaurantCards) => {
   return (props) => {
     return (
-      <div>
+      <div style={{ minHeight: "100%" }}>
         <h1 className="absolute bg-[#333] text-white m-1 px-1 rounded-md">
           Promoted
         </h1>

@@ -2,12 +2,16 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import useStatusOnline from "../utils/useStatusOnline";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
 
   const onlineStatus = useStatusOnline();
   const { loggedInUser } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex justify-between items-center p-4 bg-[#f5f5f5] shadow-sm mb-2">
@@ -23,7 +27,7 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <ul className="flex">
+        <ul className="flex items-center">
           <li className="px-2.5">
             Status :{" "}
             {onlineStatus ? (
@@ -44,7 +48,18 @@ const Header = () => {
           <li className="px-2.5">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-2.5">Cart</li>
+          <li className="px-2.5 ">
+            <Link to="/cart">
+              <div className="flex justify-center items-center">
+                <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/019/787/018/small_2x/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png"
+                  alt="cart"
+                  className="w-12"
+                />
+                ({cartItems?.length})
+              </div>
+            </Link>
+          </li>
           <button
             className="login"
             onClick={() =>

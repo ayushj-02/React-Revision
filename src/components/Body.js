@@ -87,14 +87,14 @@ const Body = () => {
         >
           Reset
         </button>
-        <label htmlFor="" className="ml-6">
+        {/* <label htmlFor="" className="ml-6">
           User LoggedIn :{" "}
-        </label>
-        <input
+        </label> */}
+        {/* <input
           className="border border-black"
           value={loggedInUser}
           onChange={(e) => setUserName(e?.target?.value)}
-        />
+        /> */}
       </div>
 
       {allRestaurants.length === 0 ? (

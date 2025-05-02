@@ -1,6 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItems } from "../utils/cartSlice";
 
 const ItemList = ({ itemCards }) => {
+  const dispatch = useDispatch();
+
+  const onHandleClick = (items) => {
+    dispatch(addItems(items));
+  };
   return itemCards?.map((i, index) => {
     return (
       <div
@@ -28,7 +35,10 @@ const ItemList = ({ itemCards }) => {
           />
 
           <div className="absolute mx-12" style={{ top: "5rem" }}>
-            <button className="font-bold text-green-600 rounded-lg py-1 px-5 bg-white shadow-lg">
+            <button
+              className="font-bold text-green-600 rounded-lg py-1 px-5 bg-white shadow-lg cursor-pointer"
+              onClick={() => onHandleClick(i)}
+            >
               ADD
             </button>
           </div>
